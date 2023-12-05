@@ -1,31 +1,27 @@
-#base image 
-
 FROM debian:bullseye
 
 RUN apt update && apt upgrade -y && apt install -y nginx
 
-#execute cmd in container
-#RUN
+RUN apt install nano -y
 
-#copy or download files in image
-#ADD
+RUN mkdir -p /etc/nginx/ssl
 
-#modify current repository (=cd)
-#WORKDIR
+RUN apt install -y openssl
 
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt \
+                             -keyout /etc/nginx/ssl/inception.key \
+                             -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=mvautrot.42.fr/UID=mvautrot"
 
-#Indicate the port who is the application listenning
-#EXPOSE
+RUN mkdir -p /var/run/nginx
 
-#Indicate what repository to share with the host
-#VOLUME
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-#Les instructions EXPOSE et VOLUME ne sont pas 
-#nécessaires au bon fonctionnement de notre image
-# Docker. Cependant, les ajouter permet une meilleure 
-#compréhension pour l’utilisateur des ports d'écoute attendus, 
-#ainsi que des volumes partageables.
+RUN chmod 755 /var/www/html
 
-#This ligne permite to our container to know the commande he needs to exectue when is started
-#CMD || ENTRYPOINT
+RUN chown -R www-data:www-data /var/www/html
+
+EXPOSE 443
+
+CMD ["nginx", "-g", "daemon off;"]
+
 
