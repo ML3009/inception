@@ -1,17 +1,17 @@
 #!/bin/sh
 
-SQL_DATABASE="data"
-SQL_USER="usr"
-SQL_PASSWORD="mdp"
-SQL_HOST="host"
-WP_URL="test" 
-WP_TITLE="testTitle" 
-WP_ADMIN="ml" 
-WP_ADMIN_PASSWORD="123" 
-WP_ADMIN_EMAIL="ml@gmail.com" 
-WP_USER="lm" 
-WP_USER_EMAIL="lm@gmail.com" 
-WP_USER_PASSWORD="321"
+#SQL_DATABASE="data"
+#SQL_USER="usr"
+#SQL_PASSWORD="mdp"
+#SQL_HOST="host"
+#WP_URL="test" 
+#WP_TITLE="testTitle" 
+#WP_ADMIN="ml" 
+#WP_ADMIN_PASSWORD="123" 
+#WP_ADMIN_EMAIL="ml@gmail.com" 
+#WP_USER="lm" 
+#WP_USER_EMAIL="lm@gmail.com" 
+#WP_USER_PASSWORD="321"
 
 sleep 10
 
