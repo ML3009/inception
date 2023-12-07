@@ -9,16 +9,16 @@ volumes:
     name: wordpress
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: 'home/user/data/wordpress'
+      type: none
+      o: bind
+      device: '/home/ml/data/wordpress'
   mariadb:
     name: mariadb
     driver: local
     driver_opts:
-    type: none
-    o: bind
-    device: 'home/usr/data/mariadb'
+      type: none
+      o: bind
+      device: '/home/ml/data/mariadb'
 
 services:
   nginx:
@@ -39,8 +39,8 @@ services:
     restart: always
 
   mariadb:
-    container_name: mariadb
     image: mariadb
+    container_name: mariadb
     build: 
       context: requirements/mariadb/
     volumes:
@@ -54,8 +54,8 @@ services:
     restart: always
 
   wordpress:
-    container_name: wordpress
     image: wordpress
+    container_name: wordpress
     build:
       context: requirements/wordpress
     expose:
@@ -64,7 +64,8 @@ services:
       - wordpress:/var/www/html
     depends_on:
       - mariadb
-    networks: inception
+    networks: 
+      - inception
     env_file: 
       - .env
     restart: always
