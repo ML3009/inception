@@ -1,18 +1,5 @@
 #!/bin/sh
 
-#SQL_DATABASE="data"
-#SQL_USER="usr"
-#SQL_PASSWORD="mdp"
-#SQL_HOST="host"
-#WP_URL="test" 
-#WP_TITLE="testTitle" 
-#WP_ADMIN="ml" 
-#WP_ADMIN_PASSWORD="123" 
-#WP_ADMIN_EMAIL="ml@gmail.com" 
-#WP_USER="lm" 
-#WP_USER_EMAIL="lm@gmail.com" 
-#WP_USER_PASSWORD="321"
-
 sleep 10
 
 if [ -f "/var/www/html/wp-config.php" ]; then
@@ -20,7 +7,7 @@ if [ -f "/var/www/html/wp-config.php" ]; then
 else
     wp core download --allow-root
 
-    wp core config --dbname=$SQL_DATABASE \
+    wp core config --dbname=wordpress \
                    --dbuser=$SQL_USER \
                    --dbpass=$SQL_PASSWORD \
                    --dbhost=$SQL_HOST \

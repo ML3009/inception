@@ -28,10 +28,12 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-RUN chmod 755 /var/www/html
+RUN chmod -R 755 /var/www/html
 
 COPY tools/conf_wordpress.sh /usr/local/bin/conf_wordpress.sh
 RUN chmod 755 /usr/local/bin/conf_wordpress.sh
+
+WORKDIR /var/www/html
 
 EXPOSE 9000
 

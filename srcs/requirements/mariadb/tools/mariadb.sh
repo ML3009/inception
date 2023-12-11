@@ -1,10 +1,5 @@
 #!/bin/sh
 
-#SQL_DATABASE="data"
-#SQL_USER="usr"
-#SQL_PASSWORD="mdp"
-#SQL_ROOT_PASSWORD="mdp1"
-
 service mariadb start
 
 sleep 1
