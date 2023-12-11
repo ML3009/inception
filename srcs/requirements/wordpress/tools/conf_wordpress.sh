@@ -7,7 +7,7 @@ if [ -f "/var/www/html/wp-config.php" ]; then
 else
     wp core download --allow-root
 
-    wp core config --dbname=wordpress \
+    wp core config --dbname=$SQL_DBNAME \
                    --dbuser=$SQL_USER \
                    --dbpass=$SQL_PASSWORD \
                    --dbhost=$SQL_HOST \
