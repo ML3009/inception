@@ -7,6 +7,7 @@ clean:
 	@docker-compose -f ./srcs/docker-compose.yml down
 	@docker system prune -af
 	@sudo rm -rf /home/ml/data/mariadb /home/ml/data/wordpress
+	@docker volume prune -af
 
 re:
 	clean all

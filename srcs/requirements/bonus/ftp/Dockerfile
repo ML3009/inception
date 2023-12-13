@@ -2,6 +2,10 @@ FROM debian:bullseye
 
 RUN apt update -y && apt upgrade -y && apt install vsftpd -y
 
-COPY conf/vsftpd.conf /etc/vsftpd.conf
+COPY conf/vsftpd.conf /tmp/vsftpd.conf
 
-RUN chmod 600 /etc/vsftpd/vsftpd.conf
+COPY tools/user_ftp.sh /usr/local/bin/user_ftp.sh
+
+RUN chmod +x /usr/local/bin/user_ftp.sh
+
+CMD ["/usr/local/bin/user_ftp.sh"]

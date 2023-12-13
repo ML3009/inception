@@ -84,3 +84,19 @@ services:
     env_file: 
       - .env
     restart: always
+
+  ftp:
+    image: ftp
+    container_name: ftp
+    build:
+      context: requirements/bonus/ftp
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"  # Ajout de la plage de ports pour le mode passif
+    volumes:
+      - wordpress:/var/www/html
+    networks: 
+      - inception
+    env_file: 
+      - .env
+    restart: always
