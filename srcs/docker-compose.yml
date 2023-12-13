@@ -19,6 +19,13 @@ volumes:
       type: none
       o: bind
       device: '/home/ml/data/mariadb'
+  website:
+    name: website
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/home/ml/data/website'
 
 services:
   nginx:
@@ -95,6 +102,21 @@ services:
       - "21100-21110:21100-21110"  # Ajout de la plage de ports pour le mode passif
     volumes:
       - wordpress:/var/www/html
+    networks: 
+      - inception
+    env_file: 
+      - .env
+    restart: always
+
+  website:
+    image: website
+    container_name: website
+    build:
+      context: requirements/bonus/website
+    ports:
+      - "1111:1111"
+    volumes:
+      - website:/var/www/html
     networks: 
       - inception
     env_file: 
