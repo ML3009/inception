@@ -29,7 +29,6 @@ volumes:
 
 services:
   nginx:
-    image: nginx
     container_name: nginx
     build:
       context: requirements/nginx
@@ -46,7 +45,6 @@ services:
     restart: always
 
   mariadb:
-    image: mariadb
     container_name: mariadb
     build: 
       context: requirements/mariadb/
@@ -61,7 +59,6 @@ services:
     restart: always
 
   wordpress:
-    image: wordpress
     container_name: wordpress
     build:
       context: requirements/wordpress
@@ -78,7 +75,6 @@ services:
     restart: always
 
   redis:
-    image: redis
     container_name: redis
     build:
       context: requirements/bonus/redis
@@ -93,7 +89,6 @@ services:
     restart: always
 
   ftp:
-    image: ftp
     container_name: ftp
     build:
       context: requirements/bonus/ftp
@@ -109,7 +104,6 @@ services:
     restart: always
 
   website:
-    image: website
     container_name: website
     build:
       context: requirements/bonus/website
@@ -119,6 +113,23 @@ services:
       - website:/var/www/html
     networks: 
       - inception
+    env_file: 
+      - .env
+    restart: always
+
+  adminer:
+    container_name: adminer
+    build:
+      context: requirements/bonus/adminer
+    expose:
+      - "9000"
+    depends_on:
+      - mariadb
+      - wordpress
+    networks: 
+      - inception
+    volumes:
+      - wordpress:/var/www/html
     env_file: 
       - .env
     restart: always
